@@ -36,7 +36,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       toast.success("Welcome back to Bravo Six!")
     } catch (error) {
       console.error(error);
-      toast.error("Login failed!")
+      toast.error("Invalid Credentials")
     } finally {
       set({ loading: false })
     }
