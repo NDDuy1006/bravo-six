@@ -8,6 +8,10 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   loading: false,
 
+  setAccessToken: (accessToken) => {
+    set({ accessToken })
+  },
+
   clearState: () => {
     set({accessToken: null, user: null, loading: false})
   },
@@ -32,7 +36,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     try {
       set({ loading: true })
       const { accessToken } = await authService.signIn(username, password)
-      set({ accessToken })
+      get().setAccessToken(accessToken)
 
       await get().fetchMe()
       toast.success("Welcome back to Bravo Six!")
@@ -67,6 +71,26 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       toast.error("Authentication error. Try again later.")
     } finally {
       set({ loading: false })
+    }
+  },
+
+  refresh: async () => {
+    try {
+      set({loading: true})
+      const {user, fetchMe, setAccessToken} = get()
+
+      const accessToken = await authService.refresh()
+      setAccessToken(accessToken)
+      
+      if (!user) {
+        await fetchMe()
+      }
+    } catch (error) {
+      console.error(error)
+      toast.error("Session expires. Try to log in again")
+      get().clearState()
+    } finally {
+      set({loading: false})
     }
   }
 }))

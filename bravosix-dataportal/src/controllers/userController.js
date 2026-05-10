@@ -9,3 +9,7 @@ export const authMe = async (req, res) => {
     return res.status(500).json({ Message: "Something went wrong" })
   }
 }
+
+export const test = async (req, res) => {
+  return res.sendStatus(204)
+}
