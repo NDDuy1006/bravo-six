@@ -67,7 +67,7 @@ export const acceptFriendRequest = async (req, res) => {
     }
 
     if (request.to.toString() !== userId.toString()) {
-      return res.status(403).json({ message: "Bad request. Unauthorized" })
+      return res.status(403).json({ message: "Bad request" })
     }
 
     const friendship = await Friendship.create({
@@ -108,7 +108,7 @@ export const declineFriendRequest = async (req, res) => {
     }
 
     if (request.to.toString() !== userId.toString()) {
-      return res.status(403).json({ message: "Bad request. Unauthorized" })
+      return res.status(403).json({ message: "Bad request" })
     }
 
     await FriendRequest.findByIdAndDelete(requestId)

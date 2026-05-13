@@ -18,7 +18,7 @@ export const signUp = async (req, res) => {
     } = req.body
 
     if (!username || !password || !email || !firstName || !lastName) {
-      return res.status(400).json({ message: "userName, password, email, firstName and lastName are required" })
+      return res.status(400).json({ message: "username, password, email, firstName and lastName are required" })
     }
 
     // kiểm trả user có tồn tại

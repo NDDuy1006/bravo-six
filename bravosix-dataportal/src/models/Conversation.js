@@ -96,6 +96,6 @@ conversationSchema.index({
   "participant.userId": 1, lastMessageAt: -1
 })
 
-const Conversation = mongoose.model("Conversation")
+const Conversation = mongoose.model("Conversation", conversationSchema)
 
 export default Conversation
