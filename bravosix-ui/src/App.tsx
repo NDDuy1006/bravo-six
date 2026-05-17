@@ -1,11 +1,18 @@
-import { BrowserRouter, Route, Routes } from 'react-router'
-import {Toaster} from 'sonner'
-import SignInPage from './pages/SignInPage'
-import SignUpPage from './pages/SignUpPage'
-import ChatAppPage from './pages/ChatAppPage'
-import ProtectedRoute from './components/auth/ProtectedRoute'
+import { BrowserRouter, Route, Routes } from "react-router"
+import {Toaster} from "sonner"
+import SignInPage from "./pages/SignInPage"
+import SignUpPage from "./pages/SignUpPage"
+import ChatAppPage from "./pages/ChatAppPage"
+import ProtectedRoute from "./components/auth/ProtectedRoute"
+import { useThemeStore } from "./stores/useThemeStore"
+import { useEffect } from "react"
 
 function App() {
+  const { isDark, setTheme } = useThemeStore()
+  
+  useEffect(() => {
+    setTheme(isDark)
+  }, [isDark])
 
   return (
     <>
