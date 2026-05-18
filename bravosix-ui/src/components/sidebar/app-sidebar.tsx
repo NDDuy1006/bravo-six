@@ -29,7 +29,7 @@ import { useAuthStore } from "@/stores/useAuthStore"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { isDark, toggleTheme } = useThemeStore()
-  const {user} = useAuthStore()
+  const { user } = useAuthStore()
 
   return (
     <Sidebar variant="inset" {...props}>
@@ -64,7 +64,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
 
       {/* Content */}
-      <SidebarContent>
+      <SidebarContent className="beautiful-scrollbar">
         {/* New Chat */}
         <SidebarGroup>
           <SidebarGroupContent>
