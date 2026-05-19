@@ -11,10 +11,10 @@ import { protectedRoute } from "./middlewares/authMiddleware.js"
 import cors from "cors"
 import swaggerUi from "swagger-ui-express"
 import fs from "fs"
+import { io, app, server } from "./socket/index.js"
 
 dotenv.config()
 
-const app = express()
 const PORT = process.env.PORT || 5001
 
 // middlwares - giúp express hiểu và đọc được request body dưới dạng JSON
@@ -37,7 +37,7 @@ app.use("/api/messages", messageRoute)
 app.use("/api/conversations", conversationRoute)
 
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
   })
 })
