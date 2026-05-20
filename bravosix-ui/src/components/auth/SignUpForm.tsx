@@ -105,7 +105,7 @@ export function SignupForm({
                 <Input
                   type="text"
                   id="username"
-                  placeholder="Bravo Six"
+                  placeholder="Echo"
                   {...register("username")}
                 />
                 {errors.username && (

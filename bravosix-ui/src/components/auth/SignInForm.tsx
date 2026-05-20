@@ -54,7 +54,7 @@ export function SignInForm({
                 </a>
                 <h1 className="text-2xl font-bold">Welcome Back</h1>
                 <p className="text-muted-foreground text-balance">
-                  Sign in into your Bravo Six Account
+                  Sign in into your Echo Account
                 </p>
               </div>
 
@@ -66,7 +66,7 @@ export function SignInForm({
                 <Input
                   type="text"
                   id="username"
-                  placeholder="Bravo Six"
+                  placeholder="Echo"
                   {...register("username")}
                 />
                 {errors.username && (

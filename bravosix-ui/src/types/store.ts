@@ -58,10 +58,23 @@ export interface ChatState {
     content: string,
     imgUrl?: string
   ) => Promise<void>
+
+  // append messages
+  appendMessage: (message: Message) => Promise<void>
+
+  // update conversation
+  updateConversation: (conversation: Conversation) => void
+
+  // update unread counts
+
+  // update last message
+
+  // update seen status
 }
 
 export interface SocketState {
   socket: Socket | null
+  onlineUsers: string[]
   connectSocket: () => void
   disconnectSocket: () => void
 }

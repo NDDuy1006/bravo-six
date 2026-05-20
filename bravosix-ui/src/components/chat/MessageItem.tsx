@@ -45,7 +45,7 @@ const MessageItem = ({
           {isGroupBreak && (
             <UserAvatar
               type="chat"
-              name={participant?.displayName ?? "Bravo Six"}
+              name={participant?.displayName ?? "Echo"}
               avatarUrl={participant?.avatarUrl ?? undefined}
             />
           )}

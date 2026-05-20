@@ -49,7 +49,7 @@ export const useAuthStore = create<AuthState>()(
           await get().fetchMe()
           useChatStore.getState().fetchConversations()
 
-          toast.success("Welcome back to Bravo Six!")
+          toast.success("Welcome back to Echo!")
         } catch (error) {
           console.error(error);
           toast.error("Invalid Credentials")
