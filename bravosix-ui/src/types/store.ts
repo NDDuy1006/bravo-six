@@ -1,5 +1,5 @@
 import type { Socket } from "socket.io-client"
-import type { Conversation, Message } from "./chat"
+import type { Conversation, ConversationMessages, Message } from "./chat"
 import type { User } from "./user"
 
 export interface AuthState {
@@ -35,14 +35,10 @@ export interface ThemeState {
 
 export interface ChatState {
   conversations: Conversation[]
-  messages: Record<string, {
-    items: Message[],
-    hasMore: boolean,
-    nextCursor?: string | null
-  }>
+  conversationMessages: ConversationMessages
   activeConversationId: string | null
   convoLoading: boolean
-  messageLoading
+  messageLoading: boolean
 
   reset: () => void
   setActiveConversation: (id: string | null) => void

@@ -8,7 +8,7 @@ export const useChatStore = create<ChatState>()(
   persist(
     (set, get) => ({
       conversations: [],
-      messages: {},
+      conversationMessages: {},
       activeConversationId: null,
       convoLoading: false,
       messageLoading: false,
@@ -17,7 +17,7 @@ export const useChatStore = create<ChatState>()(
       reset: () => {
         set({
           conversations: [],
-          messages: {},
+          conversationMessages: {},
           activeConversationId: null,
           convoLoading: false,
           messageLoading: false
@@ -35,14 +35,14 @@ export const useChatStore = create<ChatState>()(
         }
       },
       fetchMessages: async (conversationId) => {
-        const { activeConversationId, messages } = get()
+        const { activeConversationId, conversationMessages } = get()
         const { user } = useAuthStore.getState()
         
         const convoId = conversationId ?? activeConversationId
 
         if (!convoId) return
 
-        const current = messages?.[convoId]
+        const current = conversationMessages?.[convoId]
         const nextCursor = current?.nextCursor === undefined ? "" : current?.nextCursor
 
         if (nextCursor === null) return
@@ -58,12 +58,12 @@ export const useChatStore = create<ChatState>()(
           }))
 
           set((state) => {
-            const prev = state.messages[convoId]?.items ?? []
+            const prev = state.conversationMessages[convoId]?.items ?? []
             const merged = prev.length > 0 ? [...processed, ...prev] : processed
 
             return {
-              messages: {
-                ...state.messages,
+              conversationMessages: {
+                ...state.conversationMessages,
                 [convoId]: {
                   items: merged,
                   hasMore: !!cursor,
@@ -123,11 +123,11 @@ export const useChatStore = create<ChatState>()(
 
           const convoId = message.conversationId
 
-          let prevItems = get().messages[convoId]?.items ?? []
+          let prevItems = get().conversationMessages[convoId]?.items ?? []
 
           if (prevItems.length === 0) {
             await fetchMessages(message.conversationId)
-            prevItems = get().messages[convoId]?.items ?? []
+            prevItems = get().conversationMessages[convoId]?.items ?? []
           }
 
           set((state) => {
@@ -136,12 +136,12 @@ export const useChatStore = create<ChatState>()(
             }
 
             return {
-              messages: {
-                ...state.messages,
+              conversationMessages: {
+                ...state.conversationMessages,
                 [convoId]: {
                   items: [...prevItems, message],
-                  hasMore: state.messages[convoId].hasMore,
-                  nextCursor: state.messages[convoId].nextCursor ?? undefined
+                  hasMore: state.conversationMessages[convoId].hasMore,
+                  nextCursor: state.conversationMessages[convoId].nextCursor ?? undefined
                 }
               }
             }

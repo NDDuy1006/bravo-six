@@ -7,7 +7,7 @@ const ChatWindowBody = () => {
   const {
     activeConversationId,
     conversations,
-    messages: allMessages
+    conversationMessages: allMessages
   } = useChatStore()
 
   const messages = allMessages[activeConversationId!]?.items ?? []

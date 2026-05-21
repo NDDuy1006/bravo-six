@@ -17,7 +17,10 @@ export const chatService = {
   async fetchMessages(id: string, cursor?: string): Promise<FetchMessageProps> {
     const res = await api.get(`/conversations/${id}/messages?limit=${pageLimit}&cursor=${cursor}`)
     
-    return { messages: res.data.messages, cursor:res.data.nextCursor }
+    return {
+      messages: res.data.messages,
+      cursor: res.data.nextCursor
+    }
   },
 
   async sendDirectMessage(

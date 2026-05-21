@@ -11,7 +11,7 @@ const GroupChatCard = ({ convo }: { convo: Conversation }) => {
   const {
     activeConversationId,
     setActiveConversation,
-    messages,
+    conversationMessages,
     fetchMessages,
   } = useChatStore()
 
@@ -21,7 +21,7 @@ const GroupChatCard = ({ convo }: { convo: Conversation }) => {
   const name = convo.group?.name ?? ""
   const handleSelectConversation = async (id: string) => {
     setActiveConversation(id)
-    if (!messages[id]) {
+    if (!conversationMessages[id]) {
       await fetchMessages()
     }
   }
