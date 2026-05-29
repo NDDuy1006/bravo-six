@@ -59,13 +59,14 @@ export interface ChatState {
   appendMessage: (message: Message) => Promise<void>
 
   // update conversation
-  updateConversation: (conversation: Conversation) => void
+  updateConversation: (conversation: unknown) => void
 
   // update unread counts
 
   // update last message
 
   // update seen status
+  markAsSeen: () => Promise<void>
 }
 
 export interface SocketState {

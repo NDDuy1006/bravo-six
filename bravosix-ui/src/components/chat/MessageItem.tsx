@@ -22,9 +22,6 @@ const MessageItem = ({
 }: MessageItemProps) => {
   const prev = messages[index - 1]
 
-  console.log("Message Own: ", message.isOwn);
-  
-
   // Tách/nhóm tin nhắn
   // Tách khi tin nhắn là tin đầu tiên (thì luôn kèm avatar và thời gian)
   // Hoặc khi khác người gửi
